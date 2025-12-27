@@ -9,7 +9,7 @@ public class PatientMapper {
     public static PatientResponseDTO toDTO(Patient patient) {
         PatientResponseDTO dto = new PatientResponseDTO();
         dto.setId(patient.getId()); // Both should be Long
-        dto.setFirstName(patient.getName()); // ya getFirstName() agar field ka naam yeh hai
+        dto.setName(patient.getName()); // ya getFirstName() agar field ka naam yeh hai
         dto.setEmail(patient.getEmail());
         dto.setAddress(patient.getAddress());
         dto.setDateOfBirth(patient.getDateOfBirth());
@@ -20,7 +20,7 @@ public class PatientMapper {
     public static Patient toEntity(PatientResponseDTO dto) {
         Patient patient = new Patient();
         patient.setId(dto.getId()); // Both should be Long
-        patient.setName(dto.getFirstName()); // ya setFirstName() agar field ka naam yeh hai
+        patient.setName(dto.getName()); // ya setFirstName() agar field ka naam yeh hai
         patient.setEmail(dto.getEmail());
         patient.setAddress(dto.getAddress());
         patient.setDateOfBirth(dto.getDateOfBirth());
@@ -32,12 +32,10 @@ public class PatientMapper {
 
     public static Patient toEntity(PatientRequestDTO dto) {
         Patient patient = new Patient();
-        patient.setName(dto.getFirstName()); // or setFirstName if you have that
+        patient.setName(dto.getName()); // or setFirstName if you have that
         patient.setEmail(dto.getEmail());
-        // If dto.getDateOfBirth() returns String, convert it:
-        // patient.setDateOfBirth(LocalDate.parse(dto.getDateOfBirth()));
-        // If it's already LocalDate:
-        // patient.setDateOfBirth(dto.getDateOfBirth());
+        patient.setAddress(dto.getAddress());
+        patient.setDateOfBirth(dto.getDateOfBirth());
         patient.setRegisteredDate(dto.getRegisteredDate());
         return patient;
     }

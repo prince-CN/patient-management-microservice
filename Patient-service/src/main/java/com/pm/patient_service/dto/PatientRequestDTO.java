@@ -4,26 +4,26 @@ import java.time.LocalDate;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
 public class PatientRequestDTO {
     @NotBlank
-    @Size(max = 100, message = "Name must not exceed 100 characters")
+    @Size(max = 100)
     private String name;
 
     @NotBlank
-    @Email(message = "Email should be valid")
+    @Email
     private String email;
 
     @NotBlank
     private String address;
 
-    @NotBlank
-    private String dateOfBirth;
+    @NotNull
+    private LocalDate dateOfBirth;
 
-    private String firstName;
-    private String lastName;
+    @NotNull
     private LocalDate registeredDate;
 }

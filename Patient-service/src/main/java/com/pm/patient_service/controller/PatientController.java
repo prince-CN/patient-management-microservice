@@ -48,14 +48,15 @@ public class PatientController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<PatientResponseDTO> updatePatient(@PathVariable UUID id, @Valid @RequestBody PatientRequestDTO patientRequestDTO) {
-        PatientResponseDTO updatedPatient = patientService.updatePatient(id, patientRequestDTO);
+    public ResponseEntity<PatientResponseDTO> updatePatient(
+            @PathVariable Long id,
+            @Valid @RequestBody PatientRequestDTO patientRequestDTO) {
 
-        return ResponseEntity.ok(updatedPatient);
+        return ResponseEntity.ok(patientService.updatePatient(id, patientRequestDTO));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletePatient(@PathVariable UUID id) {
+    public ResponseEntity<Void> deletePatient(@PathVariable Long id) {
         patientService.deletePatient(id);
         return ResponseEntity.noContent().build();
     }

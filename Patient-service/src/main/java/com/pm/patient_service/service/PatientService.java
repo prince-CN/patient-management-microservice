@@ -1,7 +1,6 @@
 package com.pm.patient_service.service;
 
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
@@ -37,20 +36,21 @@ public class PatientService {
         return PatientMapper.toDTO(newPatient);
     }
 
-    public PatientResponseDTO updatePatient(UUID id, PatientRequestDTO patientRequestDTO) {
+    public PatientResponseDTO updatePatient(Long id, PatientRequestDTO patientRequestDTO) {
         Patient existingPatient = patientRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Patient not found"));
 
         existingPatient.setName(patientRequestDTO.getName());
         existingPatient.setEmail(patientRequestDTO.getEmail());
         existingPatient.setAddress(patientRequestDTO.getAddress());
-        existingPatient.setDateOfBirth(java.time.LocalDate.parse(patientRequestDTO.getDateOfBirth()));
+        existingPatient.setDateOfBirth(patientRequestDTO.getDateOfBirth());
+        existingPatient.setRegisteredDate(patientRequestDTO.getRegisteredDate());
 
         Patient updatedPatient = patientRepository.save(existingPatient);
         return PatientMapper.toDTO(updatedPatient);
     }
 
-    public void deletePatient(UUID id) {
+    public void deletePatient(Long id) {
         if (!patientRepository.existsById(id)) {
             throw new RuntimeException("Patient not found");
         }

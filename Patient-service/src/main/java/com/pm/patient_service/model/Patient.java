@@ -1,7 +1,6 @@
 package com.pm.patient_service.model;
 
 import java.time.LocalDate;
-import java.util.UUID;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -25,21 +24,10 @@ public class Patient {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
     private String name;
-
-    @NotNull
-    @Email
-    @Column(unique = true)
     private String email;
-
-    @NotNull
     private String address;
-
-    @NotNull
     private LocalDate dateOfBirth;
-
-    @NotNull
     private LocalDate registeredDate;
 
     // Getters and Setters
